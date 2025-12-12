@@ -1087,6 +1087,306 @@
             }
         }
 
+        /* ===== TECH STACK SECTION STYLES (NAMESPACED TO AVOID CONFLICTS) ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600\u0026display=swap');
+
+        .tech-stack-section {
+            font-family: 'Poppins', sans-serif;
+            background: #f7f9fc;
+            text-align: center;
+        }
+
+        .tech-stack-section h2 {
+            margin-top: 40px;
+            font-size: 32px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .tech-stack-section .filter-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tech-stack-section .filter-buttons button {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #e5e7eb;
+            font-size: 16px;
+            transition: 0.3s;
+            outline-offset: 2px;
+        }
+
+        .tech-stack-section .filter-buttons button.active {
+            background: #2563eb;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .tech-stack-section .logo-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 0 20px 60px 20px;
+            width: 100%;
+        }
+
+        .tech-stack-section .logo {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 70px;
+            height: 70px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .tech-stack-section .logo:hover {
+            transform: scale(1.15);
+        }
+
+        .tech-stack-section .logo.hidden {
+            display: none;
+        }
+
+        .tech-stack-section .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Tooltip on hover */
+        .tech-stack-section .logo::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, bottom 0.3s ease;
+            z-index: 10;
+        }
+
+        .tech-stack-section .logo:hover::after {
+            opacity: 1;
+            bottom: -40px;
+        }
+
+        /* ============================================
+           TECH STACK RESPONSIVE DESIGN - MEDIA QUERIES
+           ============================================ */
+
+        /* Mobile Devices (320px - 767px) */
+        @media screen and (max-width: 767px) {
+            .tech-stack-section h2 {
+                margin-top: 20px;
+                font-size: 22px;
+                line-height: 1.3;
+                padding: 0 15px;
+            }
+
+            .tech-stack-section .filter-buttons {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 10px;
+            }
+
+            .tech-stack-section .filter-buttons button {
+                padding: 8px 16px;
+                font-size: 14px;
+                flex: 1 1 calc(50% - 5px);
+                min-width: 120px;
+            }
+
+            .tech-stack-section .logo-container {
+                margin-top: 25px;
+                gap: 25px;
+                padding: 0 15px 40px 15px;
+            }
+
+            .tech-stack-section .logo {
+                width: 55px;
+                height: 55px;
+            }
+
+            .tech-stack-section .logo::after {
+                font-size: 11px;
+                padding: 4px 8px;
+                bottom: -30px;
+            }
+
+            .tech-stack-section .logo:hover::after {
+                bottom: -35px;
+            }
+        }
+
+        /* Small Mobile Devices (320px - 480px) */
+        @media screen and (max-width: 480px) {
+            .tech-stack-section h2 {
+                font-size: 20px;
+                margin-top: 15px;
+            }
+
+            .tech-stack-section .filter-buttons {
+                gap: 8px;
+            }
+
+            .tech-stack-section .filter-buttons button {
+                padding: 7px 12px;
+                font-size: 13px;
+                flex: 1 1 calc(50% - 4px);
+                min-width: 100px;
+            }
+
+            .tech-stack-section .logo-container {
+                gap: 20px;
+                padding: 0 10px 30px 10px;
+            }
+
+            .tech-stack-section .logo {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Tablets (768px - 1024px) */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .tech-stack-section h2 {
+                font-size: 28px;
+                margin-top: 30px;
+            }
+
+            .tech-stack-section .filter-buttons {
+                gap: 12px;
+                margin-top: 18px;
+            }
+
+            .tech-stack-section .filter-buttons button {
+                padding: 9px 20px;
+                font-size: 15px;
+            }
+
+            .tech-stack-section .logo-container {
+                margin-top: 35px;
+                gap: 35px;
+                padding: 0 25px 50px 25px;
+            }
+
+            .tech-stack-section .logo {
+                width: 65px;
+                height: 65px;
+            }
+
+            .tech-stack-section .logo::after {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+        }
+
+        /* Large Tablets and Small Desktops (1025px - 1366px) */
+        @media screen and (min-width: 1025px) and (max-width: 1366px) {
+            .tech-stack-section h2 {
+                font-size: 30px;
+            }
+
+            .tech-stack-section .logo-container {
+                gap: 38px;
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .tech-stack-section .logo {
+                width: 68px;
+                height: 68px;
+            }
+        }
+
+        /* Large Desktops (1367px and above) */
+        @media screen and (min-width: 1367px) {
+            .tech-stack-section h2 {
+                font-size: 34px;
+            }
+
+            .tech-stack-section .logo-container {
+                max-width: 1400px;
+                margin-left: auto;
+                margin-right: auto;
+                gap: 45px;
+            }
+
+            .tech-stack-section .logo {
+                width: 75px;
+                height: 75px;
+            }
+
+            .tech-stack-section .logo::after {
+                font-size: 14px;
+                padding: 7px 14px;
+            }
+        }
+
+        /* Landscape Orientation for Mobile/Tablet */
+        @media screen and (max-width: 1024px) and (orientation: landscape) {
+            .tech-stack-section h2 {
+                margin-top: 15px;
+                font-size: 24px;
+            }
+
+            .tech-stack-section .filter-buttons {
+                margin-top: 12px;
+            }
+
+            .tech-stack-section .logo-container {
+                margin-top: 20px;
+                padding-bottom: 30px;
+                gap: 30px;
+            }
+
+            .tech-stack-section .logo {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        /* Touch Device Optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .tech-stack-section .filter-buttons button {
+                padding: 12px 20px;
+                font-size: 16px;
+                min-height: 44px;
+                /* Minimum touch target size */
+            }
+
+            .tech-stack-section .logo {
+                min-width: 60px;
+                min-height: 60px;
+            }
+
+            /* Show tooltip on tap for touch devices */
+            .tech-stack-section .logo:active::after {
+                opacity: 1;
+                bottom: -40px;
+            }
+        }
+
         /* ===== blog CSS START ===== */
         .blog-section {
             padding: 60px 20px;
@@ -1537,61 +1837,79 @@
 
 
     <!-- Tech Stack Section -->
-    <section class="py-12 bg-gray-50">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="text-center mb-8">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Powered By Modern Technologies</h3>
+    <section class="tech-stack-section py-12">
+        <h2>Powered By <span class="text-blue-600">Modern Technologies</span></h2>
+
+        <div class="filter-buttons">
+            <button onclick="showCategory('frontend', this)">Frontend</button>
+            <button onclick="showCategory('backend', this)">Backend</button>
+            <button onclick="showCategory('database', this)">Databases</button>
+            <button onclick="showCategory('cms', this)">CMS Development</button>
+        </div>
+
+        <div class="logo-container" id="logos">
+
+            <!-- Frontend -->
+            <div class="logo frontend" data-name="React"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
             </div>
-            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 sm:gap-6 items-center">
-                <div class="flex justify-center">
-                    <div>
-
-                        <i class="fab fa-react text-5xl text-blue-500"></i>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div>
-
-                        <i class="fab fa-node text-5xl text-green-600"></i>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div>
-
-                        <i class="fab fa-python text-5xl text-blue-400"></i>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div>
-
-                        <i class="fab fa-wordpress text-5xl text-blue-600"></i>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-
-
-                    <i class="fab fa-js text-5xl text-yellow-500"></i>
-
-                </div>
-                <div class="flex justify-center">
-                    <div>
-
-                        <i class="fas fa-database text-5xl text-gray-600"></i>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div>
-
-                        <i class="fas fa-robot text-5xl text-purple-600"></i>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div>
-
-                        <i class="fas fa-mobile-alt text-5xl text-blue-500"></i>
-                    </div>
-                </div>
+            <div class="logo frontend" data-name="HTML5"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
             </div>
+            <div class="logo frontend" data-name="CSS3"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" /></div>
+            <div class="logo frontend" data-name="JavaScript"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                    alt="JavaScript" />
+            </div>
+            <div class="logo frontend" data-name="Next.js"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg" alt="NextJS" />
+            </div>
+
+            <!-- Backend -->
+            <div class="logo backend" data-name="Java"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" /></div>
+            <div class="logo backend" data-name="Python"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+            </div>
+            <div class="logo backend" data-name="Node.js"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+            </div>
+            <div class="logo backend" data-name="PHP"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" /></div>
+            <div class="logo backend" data-name="C"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
+            </div>
+            <div class="logo backend" data-name="C++"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+                    alt="C++" />
+            </div>
+
+            <!-- Database -->
+            <div class="logo database" data-name="MySQL"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
+            </div>
+            <div class="logo database" data-name="SQLite"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite" />
+            </div>
+            <div class="logo database" data-name="Firebase"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+                    alt="Firebase" />
+            </div>
+            <div class="logo database" data-name="Django"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" />
+            </div>
+
+            <!-- CMS -->
+            <div class="logo cms" data-name="WordPress"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg"
+                    alt="WordPress" />
+            </div>
+            <div class="logo cms" data-name="Magento"><img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/magento/magento-original.svg"
+                    alt="Magento" />
+            </div>
+
         </div>
     </section>
 
@@ -2659,6 +2977,45 @@
             arrow.classList.toggle("rotate-90");
         }
 
+
+
+        // ===== TECH STACK FILTERING SCRIPT =====
+        // On page load, show all logos by default with no active button
+        window.addEventListener('DOMContentLoaded', () => {
+            // Ensure all logos are visible
+            document.querySelectorAll('.logo').forEach(logo => logo.classList.remove('hidden'));
+            // Remove active class from all buttons on initial load
+            document.querySelectorAll('.filter-buttons button').forEach(b => b.classList.remove('active'));
+        });
+
+        function showCategory(category, btn) {
+            const logos = document.querySelectorAll('.logo');
+
+            // Check if the clicked button is already active
+            if (btn.classList.contains('active')) {
+                // If already active, deactivate it and show all logos
+                btn.classList.remove('active');
+                logos.forEach(logo => logo.classList.remove('hidden'));
+            } else {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-buttons button').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // Filter logos based on category
+                if (category === 'all') {
+                    logos.forEach(logo => logo.classList.remove('hidden'));
+                } else {
+                    logos.forEach(logo => {
+                        if (logo.classList.contains(category)) {
+                            logo.classList.remove('hidden');
+                        } else {
+                            logo.classList.add('hidden');
+                        }
+                    });
+                }
+            }
+        }
 
         // ===== JS END =====
 
