@@ -6,30 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRM Blog - Nexora Technologies</title>
 
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* Footer responsive */
-        @media (max-width: 640px) {
-            footer .grid {
-                gap: 2rem !important;
+        /* ========== NAVBAR STYLES ========== */
+        nav {
+            isolation: isolate;
+        }
+
+        .navbar-container {
+            height: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container {
+                height: 4rem;
             }
 
-            footer h4 {
-                font-size: 1rem !important;
+            .top-bar-hide-mobile {
+                display: none !important;
             }
         }
 
-        /* Mobile Menu Compact Styling */
+        /* Desktop Dropdown */
+        .nav-dropdown {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+            min-width: 18rem;
+            background: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.75rem;
+            z-index: 50;
+        }
+
+        .nav-group:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-link {
+            display: block;
+            padding: 10px 14px;
+            color: #4B5563;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-link:hover {
+            background: #EFF6FF;
+            color: #4169E1;
+            padding-left: 18px;
+        }
+
+        /* Mobile Menu */
         #mobile-menu {
             max-height: 70vh;
             overflow-y: auto;
@@ -39,7 +92,6 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* Smooth scrollbar for mobile menu */
         #mobile-menu::-webkit-scrollbar {
             width: 6px;
         }
@@ -58,49 +110,44 @@
             background: #2d4fb3;
         }
 
-        /* Mobile menu button active state with blue glow */
         .mobile-menu-btn {
             transition: all 0.3s ease;
+            color: #374151;
         }
 
-        .mobile-menu-btn.active {
-            color: #4169E1 !important;
+        .mobile-menu-btn.menu-active {
+            color: #4169E1;
             background: rgba(65, 105, 225, 0.1);
             border-radius: 8px;
             padding: 8px;
-            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.2);
         }
 
-        .mobile-menu-btn:active {
-            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.3), 0 0 15px rgba(65, 105, 225, 0.4);
-        }
-
-        .dropdown-item {
-            display: block;
-            padding: 8px 12px;
-            color: #4B5563;
-            border-radius: 8px;
-            transition: 0.2s;
-        }
-
-        .dropdown-item:hover {
-            background: #f1f5f9;
-            color: #4169E1;
-        }
-
-        .mobile-link {
+        .mobile-nav-link {
             display: block;
             padding: 12px 0;
             font-weight: 600;
             color: #4B5563;
+            transition: color 0.2s ease;
         }
 
-        .mobile-sublink {
+        .mobile-nav-link:hover {
+            color: #4169E1;
+        }
+
+        .mobile-dropdown-link {
+            display: block;
             color: #4B5563;
-            font-size: 15px;
-            padding: 5px 0;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
 
+        .mobile-dropdown-link:hover {
+            background: #f3f4f6;
+            color: #4169E1;
+        }
+
+        /* ========== UTILITY STYLES ========== */
         .pulse-glow {
             animation: glow 2s infinite alternate;
         }
@@ -115,71 +162,36 @@
             }
         }
 
-        .rotate-90 {
-            transform: rotate(90deg);
-        }
+        /* Footer Responsive */
+        @media (max-width: 640px) {
+            footer .grid {
+                gap: 2rem !important;
+            }
 
-        /* Mobile Menu Compact Styling */
-        #mobile-menu {
-            max-height: 70vh;
-            overflow-y: auto;
-            overflow-x: hidden;
-            background: white;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Smooth scrollbar for mobile menu */
-        #mobile-menu::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        #mobile-menu::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        #mobile-menu::-webkit-scrollbar-thumb {
-            background: #4169E1;
-            border-radius: 10px;
-        }
-
-        #mobile-menu::-webkit-scrollbar-thumb:hover {
-            background: #2d4fb3;
-        }
-
-        /* Mobile menu button active state with blue glow */
-        .mobile-menu-btn {
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-btn.active {
-            color: #4169E1 !important;
-            background: rgba(65, 105, 225, 0.1);
-            border-radius: 8px;
-            padding: 8px;
-            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.2);
-        }
-
-        .mobile-menu-btn:active {
-            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.3), 0 0 15px rgba(65, 105, 225, 0.4);
+            footer h4 {
+                font-size: 1rem !important;
+            }
         }
     </style>
 </head>
 
 <body class="bg-gray-100 text-gray-800">
 
+    <!-- ========== TOP BAR ========== -->
     <div class="bg-blue-600 text-white py-2 text-sm" style="background-color: #4169E1;">
         <div class="container mx-auto px-4 lg:px-8 flex flex-wrap justify-between items-center gap-2">
             <div class="flex items-center flex-wrap gap-3 sm:gap-6">
-                <span class="flex items-center text-xs sm:text-sm"><i class="fas fa-envelope mr-2"></i>
-                    info@nexora.com</span>
-                <span class="flex items-center text-xs sm:text-sm top-bar-hide-mobile"><i
-                        class="fas fa-map-marker-alt mr-2"></i> Karachi, Pakistan</span>
+                <span class="flex items-center text-xs sm:text-sm">
+                    <i class="fas fa-envelope mr-2"></i>info@nexora.com
+                </span>
+                <span class="flex items-center text-xs sm:text-sm top-bar-hide-mobile">
+                    <i class="fas fa-map-marker-alt mr-2"></i> Karachi, Pakistan
+                </span>
             </div>
             <div class="flex items-center gap-2 sm:gap-4">
-                <span class="hidden sm:flex items-center text-xs sm:text-sm"><i class="fas fa-clock mr-2"></i> Open for
-                    New Projects</span>
+                <span class="hidden sm:flex items-center text-xs sm:text-sm">
+                    <i class="fas fa-clock mr-2"></i> Open for New Projects
+                </span>
                 <div class="flex gap-2 sm:gap-3">
                     <a href="#" class="hover:text-blue-200 transition"><i class="fab fa-github"></i></a>
                     <a href="#" class="hover:text-blue-200 transition"><i class="fab fa-linkedin-in"></i></a>
@@ -189,58 +201,53 @@
         </div>
     </div>
 
-    <!-- ========================= NAVBAR ========================= -->
+    <!-- ========== NAVBAR ========== -->
     <nav class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center navbar-container">
 
                 <!-- LOGO -->
-                <div class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-3">
                     <div class="bg-blue-600 p-3 rounded-xl shadow-lg pulse-glow" style="background-color: #4169E1;">
                         <i class="fas fa-code text-white text-2xl"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-bold text-gray-800">Nex<span class="text-blue-600">ora</span></span>
+                        <span class="text-xl lg:text-2xl font-bold text-gray-800">
+                            Nex<span class="text-blue-600">ora</span>
+                        </span>
                         <p class="text-xs text-gray-500 font-semibold">International Software House</p>
                     </div>
-                </div>
+                </a>
 
                 <!-- DESKTOP MENU -->
                 <div class="hidden lg:flex items-center space-x-8">
-
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 font-semibold transition">Home</a>
 
-                    <!-- ========================= DESKTOP SERVICES DROPDOWN ========================= -->
-                    <div class="relative group">
+                    <!-- Services Dropdown -->
+                    <div class="relative nav-group">
                         <a href="./services.html"
                             class="text-gray-700 hover:text-blue-600 font-semibold transition flex items-center gap-1">
                             Services
                             <i class="fas fa-chevron-down text-xs"></i>
                         </a>
 
-                        <!-- Desktop Dropdown Box -->
-                        <div
-                            class="absolute left-0 mt-3 w-72 bg-white shadow-xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 p-4">
-
-                            <div class="flex flex-col gap-2">
-
-                                <a href="./ERP-Enterprices.html" class="dropdown-item">Enterprise EMS</a>
-                                <a href="./Enterprise-CRM-Development.html" class="dropdown-item">Enterprise CRM
+                        <div class="nav-dropdown">
+                            <div class="flex flex-col gap-1">
+                                <a href="./ERP-Enterprices.html" class="dropdown-link">Enterprise EMS</a>
+                                <a href="./Enterprise-CRM-Development.html" class="dropdown-link">Enterprise CRM
                                     Development</a>
-                                <a href="./Custome-Web-Application.html" class="dropdown-item">Custom Web
+                                <a href="./Custome-Web-Application.html" class="dropdown-link">Custom Web
                                     Applications</a>
-                                <a href="./mobapp-development.html" class="dropdown-item">Mobile Application
+                                <a href="./mobapp-development.html" class="dropdown-link">Mobile Application
                                     Development</a>
-                                <a href="./UI-UX.html" class="dropdown-item">UI UX</a>
-                                <a href="./AI-Integration-Automation.html" class="dropdown-item">AI Integration &
+                                <a href="./UI-UX.html" class="dropdown-link">UI/UX</a>
+                                <a href="./AI-Integration-Automation.html" class="dropdown-link">AI Integration &
                                     Automation</a>
-                                <a href="./WordPress-Websites.html" class="dropdown-item">WordPress Websites</a>
-                                <a href="./Tech-Consultancy.html" class="dropdown-item">Tech Consultancy</a>
-
+                                <a href="./WordPress-Websites.html" class="dropdown-link">WordPress Websites</a>
+                                <a href="./Tech-Consultancy.html" class="dropdown-link">Tech Consultancy</a>
                             </div>
                         </div>
                     </div>
-                    <!-- ========================= DROPDOWN END ========================= -->
 
                     <a href="industries.html"
                         class="text-gray-700 hover:text-blue-600 font-semibold transition">Industries</a>
@@ -259,82 +266,44 @@
                 </div>
 
                 <!-- MOBILE MENU BUTTON -->
-                <button id="mobile-menu-btn" onclick="toggleMenu()"
-                    class="mobile-menu-btn lg:hidden text-gray-700 text-2xl">
+                <button id="mobile-menu-btn" class="mobile-menu-btn lg:hidden text-2xl">
                     <i id="mobile-menu-icon" class="fas fa-bars"></i>
                 </button>
             </div>
 
-            <!-- ========================= MOBILE MENU ========================= -->
+            <!-- ========== MOBILE MENU ========== -->
             <div id="mobile-menu" class="hidden lg:hidden pb-4">
+                <a href="index.html" class="mobile-nav-link">Home</a>
 
-                <a href="index.html" class="mobile-link">Home</a>
-
-                <!-- MOBILE SERVICES DROPDOWN WITH ARROW -->
-                <!-- MOBILE DROPDOWN -->
+                <!-- Mobile Services Dropdown -->
                 <div class="py-3 border-b border-gray-200">
-
-                    <!-- TOP ROW (Services + Arrow) -->
-                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleMobileDropdown()">
-
-                        <a href="./services.html" class="text-gray-700 font-semibold block">
-                            Services
-                        </a>
-
-                        <i id="mobileArrow" class="fas fa-chevron-right text-gray-700 text-sm transition-transform"></i>
+                    <div class="flex justify-between items-center cursor-pointer" id="mobile-dropdown-trigger">
+                        <a href="./services.html" class="text-gray-700 font-semibold">Services</a>
+                        <i id="mobile-dropdown-arrow"
+                            class="fas fa-chevron-right text-gray-700 text-sm transition-transform"></i>
                     </div>
 
-                    <!-- DROPDOWN CONTENT -->
-                    <div id="mobileDropdown" class="mt-3 ml-4 hidden flex-col space-y-2">
-
-                        <a href="./ERP-Enterprices.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Enterprise EMS
-                        </a>
-
-                        <a href="./Enterprise-CRM-Development.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Enterprise CRM Development
-                        </a>
-
-                        <a href="./Custome-Web-Application.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Custom Web Applications
-                        </a>
-
-                        <a href="./mobapp-development.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Mobile Application Development
-                        </a>
-
-                        <a href="UI-UX.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            UI UX
-                        </a>
-
-                        <a href="AI-Integration-Automation.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            AI Integration & Automation
-                        </a>
-
-                        <a href="WordPress-Websites.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            WordPress Websites
-                        </a>
-
-                        <a href="Tech-Consultancy.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Tech Consultancy
-                        </a>
+                    <div id="mobile-dropdown-content" class="mt-3 ml-4 hidden flex-col space-y-2">
+                        <a href="./ERP-Enterprices.html" class="mobile-dropdown-link">Enterprise EMS</a>
+                        <a href="./Enterprise-CRM-Development.html" class="mobile-dropdown-link">Enterprise CRM
+                            Development</a>
+                        <a href="./Custome-Web-Application.html" class="mobile-dropdown-link">Custom Web
+                            Applications</a>
+                        <a href="./mobapp-development.html" class="mobile-dropdown-link">Mobile Application
+                            Development</a>
+                        <a href="UI-UX.html" class="mobile-dropdown-link">UI/UX</a>
+                        <a href="AI-Integration-Automation.html" class="mobile-dropdown-link">AI Integration &
+                            Automation</a>
+                        <a href="WordPress-Websites.html" class="mobile-dropdown-link">WordPress Websites</a>
+                        <a href="Tech-Consultancy.html" class="mobile-dropdown-link">Tech Consultancy</a>
                     </div>
                 </div>
-                <!-- MOBILE DROPDOWN END -->
 
-                <a href="industries.html" class="mobile-link">Industries</a>
-                <a href="index.html#projects" class="mobile-link">Portfolio</a>
-                <a href="index.html#testimonials" class="mobile-link">Reviews</a>
-                <a href="about.html" class="mobile-link">About</a>
-                <a href="blogs.html" class="mobile-link">Blogs</a>
+                <a href="industries.html" class="mobile-nav-link">Industries</a>
+                <a href="index.html#projects" class="mobile-nav-link">Portfolio</a>
+                <a href="index.html#testimonials" class="mobile-nav-link">Reviews</a>
+                <a href="about.html" class="mobile-nav-link">About</a>
+                <a href="blogs.html" class="mobile-nav-link">Blogs</a>
 
                 <a href="index.html#contact"
                     class="block mt-4 bg-blue-600 text-white text-center px-6 py-3 rounded-lg font-semibold hover:shadow-xl transform hover:scale-105 transition"
@@ -342,12 +311,10 @@
                     Start Project
                 </a>
             </div>
-            <!-- ========================= MOBILE MENU END ========================= -->
-
         </div>
     </nav>
 
-    <!-- BLOG HERO -->
+    <!-- ========== BLOG HERO ========== -->
     <section class="w-full relative py-24 text-center text-white overflow-hidden">
         <div class="absolute inset-0 w-full h-full">
             <img src="assets/images/blog/crm-blog.jpg" alt="Blog Cover" class="w-full h-full object-cover">
@@ -366,8 +333,8 @@
         </div>
     </section>
 
-    <!-- BLOG CONTENT -->
-    <section class="max-w-4xl mx-auto px-6 py-12 bg-white rounded-xl shadow">
+    <!-- ========== BLOG CONTENT ========== -->
+    <section class="max-w-4xl mx-auto px-6 py-12 bg-white rounded-xl shadow my-8">
         <img src="assets/images/blog/blog_crm.jpg" alt="CRM Blog" class="w-full h-64 object-cover rounded-lg mb-6">
 
         <h2 class="text-2xl font-bold text-blue-600 mb-4">Boost Your IT Sales with AI-Driven CRM Solutions</h2>
@@ -410,26 +377,24 @@
         <p class="text-gray-400 text-sm mb-6">Jul 22, 2024</p>
     </section>
 
-
-    <!-- COMMENTS -->
+    <!-- ========== COMMENTS SECTION ========== -->
     <section class="max-w-4xl mx-auto px-6 py-6">
         <h3 class="text-xl font-bold mb-4">Leave a Reply</h3>
         <form id="commentForm" class="flex flex-col gap-4">
-            <input type="text" id="name" placeholder="Name" class="border p-2 rounded">
-            <input type="email" id="email" placeholder="Email" class="border p-2 rounded">
-            <textarea id="comment" placeholder="Comment" class="border p-2 rounded"></textarea>
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Post Comment</button>
+            <input type="text" id="name" placeholder="Name" class="border p-2 rounded" required>
+            <input type="email" id="email" placeholder="Email" class="border p-2 rounded" required>
+            <textarea id="comment" placeholder="Comment" class="border p-2 rounded h-24" required></textarea>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Post
+                Comment</button>
         </form>
 
         <div id="commentsSection" class="mt-6 space-y-4"></div>
     </section>
 
-
-    <!-- ========================= FOOTER ========================= -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="p-3 rounded-xl bg-blue-600">
@@ -486,8 +451,9 @@
 
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2024 Nexora. All rights reserved.Built with
-                        excellence.</p>
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2024 Nexora. All rights reserved. Built with excellence.
+                    </p>
                     <div class="flex space-x-6 text-sm">
                         <a href="#" class="text-gray-400 hover:text-blue-500 transition">Privacy Policy</a>
                         <a href="#" class="text-gray-400 hover:text-blue-500 transition">Terms of Service</a>
@@ -498,28 +464,37 @@
         </div>
     </footer>
 
-
+    <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const menuIcon = document.getElementById('mobile-menu-icon');
+        // ========== Mobile Menu Toggle ==========
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
 
+        mobileMenuBtn.addEventListener('click', function () {
             mobileMenu.classList.toggle('hidden');
-            menuBtn.classList.toggle('active');
+            this.classList.toggle('menu-active');
 
-            // Toggle icon between bars and X
             if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
             } else {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-times');
             }
-        }
+        });
 
-        // Smooth Scroll for Navigation Links
+        // ========== Mobile Dropdown Toggle ==========
+        const mobileDropdownTrigger = document.getElementById('mobile-dropdown-trigger');
+        const mobileDropdownContent = document.getElementById('mobile-dropdown-content');
+        const mobileDropdownArrow = document.getElementById('mobile-dropdown-arrow');
+
+        mobileDropdownTrigger.addEventListener('click', function () {
+            mobileDropdownContent.classList.toggle('hidden');
+            mobileDropdownArrow.classList.toggle('rotate-90');
+        });
+
+        // ========== Smooth Scroll ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -527,49 +502,47 @@
                     e.preventDefault();
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        // Close mobile menu if open
-                        const mobileMenu = document.getElementById('mobile-menu');
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         if (!mobileMenu.classList.contains('hidden')) {
                             mobileMenu.classList.add('hidden');
+                            mobileMenuBtn.classList.remove('menu-active');
+                            mobileMenuIcon.classList.remove('fa-times');
+                            mobileMenuIcon.classList.add('fa-bars');
                         }
                     }
                 }
             });
         });
-        // Navbar Scroll Effect
+
+        // ========== Navbar Scroll Effect ==========
         let lastScroll = 0;
         const navbar = document.querySelector('nav');
 
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
-
             if (currentScroll > 100) {
                 navbar.classList.add('shadow-xl');
             } else {
                 navbar.classList.remove('shadow-xl');
             }
-
             lastScroll = currentScroll;
         });
 
-
+        // ========== Comments System ==========
         const form = document.getElementById("commentForm");
         const commentsSection = document.getElementById("commentsSection");
-        const blogSlug = "blog-crm"; // unique slug for this page
+        const blogSlug = "blog-crm";
 
         const loadComments = () => {
             const comments = JSON.parse(localStorage.getItem(blogSlug) || "[]");
             commentsSection.innerHTML = comments.map(c => `
-    <div class="border p-3 rounded">
-      <p class="font-bold">${c.name}</p>
-      <p class="text-sm text-gray-600">${c.comment}</p>
-    </div>
-  `).join("");
+                <div class="border border-gray-200 p-4 rounded-lg bg-gray-50">
+                    <p class="font-bold text-gray-800">${c.name}</p>
+                    <p class="text-sm text-gray-600 mt-2">${c.comment}</p>
+                </div>
+            `).join("");
         };
+
         loadComments();
 
         form.addEventListener("submit", e => {
@@ -577,27 +550,15 @@
             const name = document.getElementById("name").value.trim();
             const comment = document.getElementById("comment").value.trim();
             if (!name || !comment) return;
+
             const comments = JSON.parse(localStorage.getItem(blogSlug) || "[]");
             comments.push({ name, comment });
             localStorage.setItem(blogSlug, JSON.stringify(comments));
+
             form.reset();
             loadComments();
         });
-
-
-
-        // <!-- MOBILE MENU SCRIPT --> 
-
-        function toggleMobileDropdown() {
-            const box = document.getElementById("mobileDropdown");
-            const arrow = document.getElementById("mobileArrow");
-
-            box.classList.toggle("hidden");
-            arrow.classList.toggle("rotate-90");
-        }
-
     </script>
-
 </body>
 
 </html>

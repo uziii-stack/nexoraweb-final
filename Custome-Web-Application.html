@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Transform your business with custom software development by Nexora. Expert team delivering scalable, secure, and innovative digital solutions from discovery to deployment.">
-    <title>Custom Web Applications | Nexora</title>
+    <title>Enterprise CRM EMS | Nexora</title>
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -24,6 +24,155 @@
         body {
             font-family: 'Inter', Arial, sans-serif;
             overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR STYLES ========== */
+        nav {
+            isolation: isolate;
+        }
+
+        .navbar-container {
+            height: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container {
+                height: 4rem;
+            }
+
+            .top-bar-hide-mobile {
+                display: none !important;
+            }
+        }
+
+        /* Desktop Dropdown */
+        .nav-dropdown {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+            min-width: 18rem;
+            background: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.75rem;
+            z-index: 50;
+        }
+
+        .nav-group:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-link {
+            display: block;
+            padding: 10px 14px;
+            color: #4B5563;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-link:hover {
+            background: #EFF6FF;
+            color: #4169E1;
+            padding-left: 18px;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            max-height: 70vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: white;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        #mobile-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #mobile-menu::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        #mobile-menu::-webkit-scrollbar-thumb {
+            background: #4169E1;
+            border-radius: 10px;
+        }
+
+        #mobile-menu::-webkit-scrollbar-thumb:hover {
+            background: #2d4fb3;
+        }
+
+        .mobile-menu-btn {
+            transition: all 0.3s ease;
+            color: #374151;
+        }
+
+        .mobile-menu-btn.menu-active {
+            color: #4169E1;
+            background: rgba(65, 105, 225, 0.1);
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 12px 0;
+            font-weight: 600;
+            color: #4B5563;
+            transition: color 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: #4169E1;
+        }
+
+        .mobile-dropdown-link {
+            display: block;
+            color: #4B5563;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-dropdown-link:hover {
+            background: #f3f4f6;
+            color: #4169E1;
+        }
+
+        /* ========== UTILITY STYLES ========== */
+        .pulse-glow {
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 4px #4169E1;
+            }
+
+            to {
+                box-shadow: 0 0 15px #4169E1;
+            }
+        }
+
+        /* Footer responsive */
+        @media (max-width: 640px) {
+            footer .grid {
+                gap: 2rem !important;
+            }
+
+            footer h4 {
+                font-size: 1rem !important;
+            }
         }
 
         /* ========== HERO SECTION ========== */
@@ -1197,7 +1346,7 @@
             <div class="flex justify-between items-center h-20">
 
                 <!-- LOGO -->
-                <div class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-3">
                     <div class="bg-blue-600 p-3 rounded-xl shadow-lg pulse-glow" style="background-color: #4169E1;">
                         <i class="fas fa-code text-white text-2xl"></i>
                     </div>
@@ -1205,7 +1354,7 @@
                         <span class="text-2xl font-bold text-gray-800">Nex<span class="text-blue-600">ora</span></span>
                         <p class="text-xs text-gray-500 font-semibold">International Software House</p>
                     </div>
-                </div>
+                </a>
 
                 <!-- DESKTOP MENU -->
                 <div class="hidden lg:flex items-center space-x-8">
@@ -1233,7 +1382,7 @@
                                     Applications</a>
                                 <a href="./mobapp-development.html" class="dropdown-item">Mobile Application
                                     Development</a>
-                                <a href="./UI-UX.html" class="dropdown-item">UI UX</a>
+                                <a href="./UI-UX.html" class="dropdown-item">UI/UX</a>
                                 <a href="./AI-Integration-Automation.html" class="dropdown-item">AI Integration &
                                     Automation</a>
                                 <a href="./WordPress-Websites.html" class="dropdown-item">WordPress Websites</a>
@@ -1311,7 +1460,7 @@
 
                         <a href="UI-UX.html"
                             class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            UI UX
+                            UI/UX
                         </a>
 
                         <a href="AI-Integration-Automation.html"

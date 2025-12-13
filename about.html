@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
 
         * {
             margin: 0;
@@ -22,6 +22,7 @@
             overflow-x: hidden;
         }
 
+        /* ========== HERO BACKGROUND ========== */
         .bg-pattern {
             background: linear-gradient(135deg, #0b1f3b 0%, #1a3a5c 50%, #0d2847 100%);
             position: relative;
@@ -78,70 +79,65 @@
             animation: gradient-shift 15s ease infinite;
         }
 
-        /* Navigation Simplification */
-        nav .h-20 {
-            height: 4rem !important;
+        /* ========== NAVBAR STYLES ========== */
+        nav {
+            isolation: isolate;
         }
 
-        nav .text-2xl {
-            font-size: 1.25rem !important;
+        .navbar-container {
+            height: 5rem;
         }
 
-        /* Footer Stacking */
-        footer .grid {
-            gap: 2.5rem !important;
+        @media (max-width: 768px) {
+            .navbar-container {
+                height: 4rem;
+            }
+
+            .top-bar-hide-mobile {
+                display: none !important;
+            }
         }
 
-        .dropdown-item {
+        /* Desktop Dropdown */
+        .nav-dropdown {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+            min-width: 18rem;
+            background: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.75rem;
+            z-index: 50;
+        }
+
+        .nav-group:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-link {
             display: block;
-            padding: 8px 12px;
+            padding: 10px 14px;
             color: #4B5563;
             border-radius: 8px;
-            transition: 0.2s;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
         }
 
-        .dropdown-item:hover {
-            background: #f1f5f9;
+        .dropdown-link:hover {
+            background: #EFF6FF;
             color: #4169E1;
+            padding-left: 18px;
         }
 
-        .mobile-link {
-            display: block;
-            padding: 12px 0;
-            font-weight: 600;
-            color: #4B5563;
-        }
-
-        .mobile-sublink {
-            color: #4B5563;
-            font-size: 15px;
-            padding: 5px 0;
-        }
-
-        .pulse-glow {
-            animation: glow 2s infinite alternate;
-        }
-
-        .quote-mark {
-            font-family: Georgia, serif;
-            line-height: 0.8;
-        }
-
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 4px #4169E1;
-            }
-
-            to {
-                box-shadow: 0 0 15px #4169E1;
-            }
-        }
-
-        .rotate-90 {
-            transform: rotate(90deg);
-        }
-
-        /* Mobile Menu Compact Styling */
+        /* Mobile Menu */
         #mobile-menu {
             max-height: 70vh;
             overflow-y: auto;
@@ -151,7 +147,6 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* Smooth scrollbar for mobile menu */
         #mobile-menu::-webkit-scrollbar {
             width: 6px;
         }
@@ -170,47 +165,60 @@
             background: #2d4fb3;
         }
 
-        /* Mobile menu button active state with blue glow */
         .mobile-menu-btn {
             transition: all 0.3s ease;
+            color: #374151;
         }
 
-        .mobile-menu-btn.active {
-            color: #4169E1 !important;
+        .mobile-menu-btn.menu-active {
+            color: #4169E1;
             background: rgba(65, 105, 225, 0.1);
             border-radius: 8px;
             padding: 8px;
-            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.2);
         }
 
-        .mobile-menu-btn:active {
-            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.3), 0 0 15px rgba(65, 105, 225, 0.4);
+        .mobile-nav-link {
+            display: block;
+            padding: 12px 0;
+            font-weight: 600;
+            color: #4B5563;
+            transition: color 0.2s ease;
         }
 
-        @keyframes float {
+        .mobile-nav-link:hover {
+            color: #4169E1;
+        }
 
-            0%,
-            100% {
-                transform: translateY(0px);
+        .mobile-dropdown-link {
+            display: block;
+            color: #4B5563;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-dropdown-link:hover {
+            background: #f3f4f6;
+            color: #4169E1;
+        }
+
+        /* ========== UTILITY ANIMATIONS ========== */
+        .pulse-glow {
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 4px #4169E1;
             }
 
-            50% {
-                transform: translateY(-20px);
+            to {
+                box-shadow: 0 0 15px #4169E1;
             }
         }
 
         .animate-float {
             animation: float 6s ease-in-out infinite;
-        }
-
-        .counter-section {
-            background: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .counter-number {
-            font-variant-numeric: tabular-nums;
         }
 
         @keyframes fadeInUp {
@@ -229,6 +237,17 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
+        /* ========== COUNTER SECTION ========== */
+        .counter-section {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-number {
+            font-variant-numeric: tabular-nums;
+        }
+
         .stat-card {
             background: white;
             border: 1px solid #e5e7eb;
@@ -243,19 +262,22 @@
     </style>
 </head>
 
-<body class="bg-gray-50">
+<body>
     <!-- Top Info Bar -->
     <div class="bg-blue-600 text-white py-2 text-sm" style="background-color: #4169E1;">
         <div class="container mx-auto px-4 lg:px-8 flex flex-wrap justify-between items-center gap-2">
             <div class="flex items-center flex-wrap gap-3 sm:gap-6">
-                <span class="flex items-center text-xs sm:text-sm"><i class="fas fa-envelope mr-2"></i>
-                    info@nexora.com</span>
-                <span class="flex items-center text-xs sm:text-sm top-bar-hide-mobile"><i
-                        class="fas fa-map-marker-alt mr-2"></i> Karachi, Pakistan</span>
+                <span class="flex items-center text-xs sm:text-sm">
+                    <i class="fas fa-envelope mr-2"></i>info@nexora.com
+                </span>
+                <span class="flex items-center text-xs sm:text-sm top-bar-hide-mobile">
+                    <i class="fas fa-map-marker-alt mr-2"></i> Karachi, Pakistan
+                </span>
             </div>
             <div class="flex items-center gap-2 sm:gap-4">
-                <span class="hidden sm:flex items-center text-xs sm:text-sm"><i class="fas fa-clock mr-2"></i> Open for
-                    New Projects</span>
+                <span class="hidden sm:flex items-center text-xs sm:text-sm">
+                    <i class="fas fa-clock mr-2"></i> Open for New Projects
+                </span>
                 <div class="flex gap-2 sm:gap-3">
                     <a href="#" class="hover:text-blue-200 transition"><i class="fab fa-github"></i></a>
                     <a href="#" class="hover:text-blue-200 transition"><i class="fab fa-linkedin-in"></i></a>
@@ -265,59 +287,53 @@
         </div>
     </div>
 
-
-    <!-- ========================= NAVBAR ========================= -->
+    <!-- ========== NAVBAR ========== -->
     <nav class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center navbar-container">
 
                 <!-- LOGO -->
-                <div class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-3">
                     <div class="bg-blue-600 p-3 rounded-xl shadow-lg pulse-glow" style="background-color: #4169E1;">
                         <i class="fas fa-code text-white text-2xl"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-bold text-gray-800">Nex<span class="text-blue-600">ora</span></span>
+                        <span class="text-xl lg:text-2xl font-bold text-gray-800">
+                            Nex<span class="text-blue-600">ora</span>
+                        </span>
                         <p class="text-xs text-gray-500 font-semibold">International Software House</p>
                     </div>
-                </div>
+                </a>
 
                 <!-- DESKTOP MENU -->
                 <div class="hidden lg:flex items-center space-x-8">
-
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 font-semibold transition">Home</a>
 
-                    <!-- ========================= DESKTOP SERVICES DROPDOWN ========================= -->
-                    <div class="relative group">
+                    <!-- Services Dropdown -->
+                    <div class="relative nav-group">
                         <a href="./services.html"
                             class="text-gray-700 hover:text-blue-600 font-semibold transition flex items-center gap-1">
                             Services
                             <i class="fas fa-chevron-down text-xs"></i>
                         </a>
 
-                        <!-- Desktop Dropdown Box -->
-                        <div
-                            class="absolute left-0 mt-3 w-72 bg-white shadow-xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 p-4">
-
-                            <div class="flex flex-col gap-2">
-
-                                <a href="./ERP-Enterprices.html" class="dropdown-item">Enterprise EMS</a>
-                                <a href="./Enterprise-CRM-Development.html" class="dropdown-item">Enterprise CRM
+                        <div class="nav-dropdown">
+                            <div class="flex flex-col gap-1">
+                                <a href="./ERP-Enterprices.html" class="dropdown-link">Enterprise EMS</a>
+                                <a href="./Enterprise-CRM-Development.html" class="dropdown-link">Enterprise CRM
                                     Development</a>
-                                <a href="./Custome-Web-Application.html" class="dropdown-item">Custom Web
+                                <a href="./Custome-Web-Application.html" class="dropdown-link">Custom Web
                                     Applications</a>
-                                <a href="./mobapp-development.html" class="dropdown-item">Mobile Application
+                                <a href="./mobapp-development.html" class="dropdown-link">Mobile Application
                                     Development</a>
-                                <a href="./UI-UX.html" class="dropdown-item">UI UX</a>
-                                <a href="./AI-Integration-Automation.html" class="dropdown-item">AI Integration &
+                                <a href="./UI-UX.html" class="dropdown-link">UI/UX</a>
+                                <a href="./AI-Integration-Automation.html" class="dropdown-link">AI Integration &
                                     Automation</a>
-                                <a href="./WordPress-Websites.html" class="dropdown-item">WordPress Websites</a>
-                                <a href="./Tech-Consultancy.html" class="dropdown-item">Tech Consultancy</a>
-
+                                <a href="./WordPress-Websites.html" class="dropdown-link">WordPress Websites</a>
+                                <a href="./Tech-Consultancy.html" class="dropdown-link">Tech Consultancy</a>
                             </div>
                         </div>
                     </div>
-                    <!-- ========================= DROPDOWN END ========================= -->
 
                     <a href="industries.html"
                         class="text-gray-700 hover:text-blue-600 font-semibold transition">Industries</a>
@@ -336,82 +352,44 @@
                 </div>
 
                 <!-- MOBILE MENU BUTTON -->
-                <button id="mobile-menu-btn" onclick="toggleMenu()"
-                    class="mobile-menu-btn lg:hidden text-gray-700 text-2xl">
+                <button id="mobile-menu-btn" class="mobile-menu-btn lg:hidden text-2xl">
                     <i id="mobile-menu-icon" class="fas fa-bars"></i>
                 </button>
             </div>
 
-            <!-- ========================= MOBILE MENU ========================= -->
+            <!-- ========== MOBILE MENU ========== -->
             <div id="mobile-menu" class="hidden lg:hidden pb-4">
+                <a href="index.html" class="mobile-nav-link">Home</a>
 
-                <a href="index.html" class="mobile-link">Home</a>
-
-                <!-- MOBILE SERVICES DROPDOWN WITH ARROW -->
-                <!-- MOBILE DROPDOWN -->
+                <!-- Mobile Services Dropdown -->
                 <div class="py-3 border-b border-gray-200">
-
-                    <!-- TOP ROW (Services + Arrow) -->
-                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleMobileDropdown()">
-
-                        <a href="./services.html" class="text-gray-700 font-semibold block">
-                            Services
-                        </a>
-
-                        <i id="mobileArrow" class="fas fa-chevron-right text-gray-700 text-sm transition-transform"></i>
+                    <div class="flex justify-between items-center cursor-pointer" id="mobile-dropdown-trigger">
+                        <a href="./services.html" class="text-gray-700 font-semibold">Services</a>
+                        <i id="mobile-dropdown-arrow"
+                            class="fas fa-chevron-right text-gray-700 text-sm transition-transform"></i>
                     </div>
 
-                    <!-- DROPDOWN CONTENT -->
-                    <div id="mobileDropdown" class="mt-3 ml-4 hidden flex-col space-y-2">
-
-                        <a href="./ERP-Enterprices.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Enterprise EMS
-                        </a>
-
-                        <a href="./Enterprise-CRM-Development.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Enterprise CRM Development
-                        </a>
-
-                        <a href="./Custome-Web-Application.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Custom Web Applications
-                        </a>
-
-                        <a href="./mobapp-development.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Mobile Application Development
-                        </a>
-
-                        <a href="UI-UX.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            UI UX
-                        </a>
-
-                        <a href="AI-Integration-Automation.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            AI Integration & Automation
-                        </a>
-
-                        <a href="WordPress-Websites.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            WordPress Websites
-                        </a>
-
-                        <a href="Tech-Consultancy.html"
-                            class="block text-gray-700 hover:text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition">
-                            Tech Consultancy
-                        </a>
+                    <div id="mobile-dropdown-content" class="mt-3 ml-4 hidden flex-col space-y-2">
+                        <a href="./ERP-Enterprices.html" class="mobile-dropdown-link">Enterprise EMS</a>
+                        <a href="./Enterprise-CRM-Development.html" class="mobile-dropdown-link">Enterprise CRM
+                            Development</a>
+                        <a href="./Custome-Web-Application.html" class="mobile-dropdown-link">Custom Web
+                            Applications</a>
+                        <a href="./mobapp-development.html" class="mobile-dropdown-link">Mobile Application
+                            Development</a>
+                        <a href="UI-UX.html" class="mobile-dropdown-link">UI/UX</a>
+                        <a href="AI-Integration-Automation.html" class="mobile-dropdown-link">AI Integration &
+                            Automation</a>
+                        <a href="WordPress-Websites.html" class="mobile-dropdown-link">WordPress Websites</a>
+                        <a href="Tech-Consultancy.html" class="mobile-dropdown-link">Tech Consultancy</a>
                     </div>
                 </div>
-                <!-- MOBILE DROPDOWN END -->
 
-                <a href="industries.html" class="mobile-link">Industries</a>
-                <a href="index.html#projects" class="mobile-link">Portfolio</a>
-                <a href="index.html#testimonials" class="mobile-link">Reviews</a>
-                <a href="about.html" class="mobile-link">About</a>
-                <a href="blogs.html" class="mobile-link">Blogs</a>
+                <a href="industries.html" class="mobile-nav-link">Industries</a>
+                <a href="index.html#projects" class="mobile-nav-link">Portfolio</a>
+                <a href="index.html#testimonials" class="mobile-nav-link">Reviews</a>
+                <a href="about.html" class="mobile-nav-link">About</a>
+                <a href="blogs.html" class="mobile-nav-link">Blogs</a>
 
                 <a href="index.html#contact"
                     class="block mt-4 bg-blue-600 text-white text-center px-6 py-3 rounded-lg font-semibold hover:shadow-xl transform hover:scale-105 transition"
@@ -419,38 +397,30 @@
                     Start Project
                 </a>
             </div>
-            <!-- ========================= MOBILE MENU END ========================= -->
-
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="bg-pattern text-white py-32 relative animated-bg">
-
-        <!-- Particles Canvas -->
+    <!-- ========== HERO SECTION ========== -->
+    <section class="bg-pattern text-white relative py-24 animated-bg overflow-hidden">
         <canvas id="particles-canvas"></canvas>
 
-        <!-- Random Lines / Shapes -->
         <img src="./assets/images/about/hero-gif.gif" class="absolute graphic-line top-20 left-10 w-32 lg:w-40">
         <img src="./assets/images/about/hero-gif.gif" class="absolute graphic-line bottom-10 right-20 w-40 lg:w-52">
 
-        <!-- Additional decorative elements -->
         <div class="absolute top-40 right-40 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
 
         <div class="container mx-auto text-center relative z-10 px-4">
-
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 glow-text">
                 About <span class="text-blue-600">Nexora</span>
             </h1>
 
-            <!-- Breadcrumb -->
             <div class="flex justify-center items-center gap-2 text-base lg:text-lg mb-8">
                 <p
                     class="text-lg sm:text-xl text-gray-200 font-medium bg-white/10 inline-block px-4 py-1 rounded-full backdrop-blur-sm border border-white/20">
                     <a href="index.html" class="hover:text-blue-400">Home</a>
                     <span class="mx-2 text-blue-400">></span>
-                    <a href="blogs.html" class="hover:text-blue-400">About </a>
+                    <a href="blogs.html" class="hover:text-blue-400">About</a>
                 </p>
             </div>
 
@@ -459,33 +429,28 @@
                 We build intelligent, user-focused solutions that enhance customer experience, streamline
                 operations, and unlock the power of automation and next-gen technologies.
             </p>
-
         </div>
     </section>
 
+    <!-- ========== WHAT IS NEXORA ========== -->
     <section class="py-20 bg-gray-100">
         <div class="container mx-auto px-6 lg:px-20">
-            <!-- HEADING -->
-            <h2 class="text-6xl font-extrabold text-gray-900 mb-6">
+            <h2 class="text-4xl lg:text-6xl font-extrabold text-gray-900 mb-6">
                 What is <span class="text-blue-600">NEXORA?</span>
             </h2>
 
-            <!-- IMAGE - MOBILE ONLY (right after heading) -->
             <div class="lg:hidden mb-6">
                 <img src="https://i.ibb.co/6Dfrk8R/office-building.jpg" alt="Nexora Office"
                     class="rounded-xl shadow-lg w-full object-cover">
             </div>
 
-            <!-- DESKTOP LAYOUT -->
             <div class="flex flex-col lg:flex-row items-center gap-12">
-                <!-- LEFT CONTENT -->
                 <div class="w-full lg:w-1/2">
                     <p class="text-gray-700 leading-relaxed mb-6">
                         <strong class="text-blue-600">Nexora</strong> Technologies is a digital innovation company
-                        focused on building smart,
-                        scalable, and future-ready software solutions. We specialize in custom software,
-                        high-performance web applications, and AI-powered automation tailored to modern
-                        business needs.
+                        focused on building smart, scalable, and future-ready software solutions. We specialize in
+                        custom software,
+                        high-performance web applications, and AI-powered automation tailored to modern business needs.
                     </p>
 
                     <p class="text-gray-700 leading-relaxed mb-6">
@@ -497,13 +462,10 @@
                     <p class="text-gray-700 leading-relaxed">
                         Backed by a skilled team of designers, engineers, and architects,
                         <strong class="text-blue-600">Nexora</strong> partners with startups and enterprises to turn
-                        ideas into
-                        impactful digital products.
+                        ideas into impactful digital products.
                     </p>
-
                 </div>
 
-                <!-- RIGHT IMAGE - DESKTOP ONLY -->
                 <div class="hidden lg:block w-full lg:w-1/2">
                     <img src="https://i.ibb.co/6Dfrk8R/office-building.jpg" alt="Nexora Office"
                         class="rounded-xl shadow-lg w-full object-cover">
@@ -511,63 +473,40 @@
             </div>
         </div>
     </section>
-    <section class="relative py-28 text-white overflow-hidden">
 
-        <!-- World Map Background -->
-        <div class="absolute inset-0 ">
+    <!-- ========== MISSION ========== -->
+    <section class="relative py-28 text-white overflow-hidden">
+        <div class="absolute inset-0">
             <img src="./assets/images/about/mission-bg.webp" alt="World Map" class="w-full h-full object-cover">
         </div>
 
-
-        <!-- Content -->
         <div class="relative z-10 text-center px-4 sm:px-6">
-
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8">
-                Our Mission
-            </h2>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8">Our Mission</h2>
 
             <div class="relative max-w-4xl mx-auto">
+                <img src="./assets/icons/about-icons/quote-left.png" alt="Opening Quote"
+                    class="absolute left-0 sm:left-2 lg:left-4 top-[-35px] w-8 sm:w-10 lg:w-12 opacity-70 pointer-events-none">
 
-                <!-- Opening Quote -->
-                <img src="./assets/icons/about-icons/quote-left.png" alt="Opening Quote" class="absolute 
-                   left-0 sm:left-2 lg:left-4 
-                   top-[-35px]
-                   w-8 sm:w-10 lg:w-12 
-                   opacity-70 pointer-events-none">
-
-                <!-- Mission Text -->
-                <p class="text-base sm:text-lg lg:text-xl 
-                   leading-relaxed font-semibold 
-                   px-10 sm:px-14 lg:px-20">
+                <p class="text-base sm:text-lg lg:text-xl leading-relaxed font-semibold px-10 sm:px-14 lg:px-20">
                     To empower global businesses with intelligent, scalable, and innovative digital solutions
                     blending technology, creativity, and automation to build a smarter future.
                 </p>
 
-                <!-- Closing Quote -->
-                <img src="./assets/icons/about-icons/quote-right.png" alt="Closing Quote" class="absolute 
-                   right-0 sm:right-2 lg:right-4 
-                   bottom-[-10px] 
-                   w-8 sm:w-10 lg:w-12 
-                   opacity-70 pointer-events-none">
-
+                <img src="./assets/icons/about-icons/quote-right.png" alt="Closing Quote"
+                    class="absolute right-0 sm:right-2 lg:right-4 bottom-[-10px] w-8 sm:w-10 lg:w-12 opacity-70 pointer-events-none">
             </div>
         </div>
-
-
     </section>
 
-
-    <!-- Core Values -->
+    <!-- ========== CORE VALUES ========== -->
     <section class="max-w-7xl mx-auto px-6 py-20">
-        <h2 class="text-4xl font-black text-left mb-14 text-gray-900">Our Core <span class="text-blue-600">Values</span>
+        <h2 class="text-4xl font-black text-left mb-14 text-gray-900">
+            Our Core <span class="text-blue-600">Values</span>
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            <!-- CARD 1 -->
-            <div class="pattern-bg bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
                 <img src="./assets/icons/about-icons/communication.png" class="w-12 h-12 mb-6">
-
                 <h3 class="text-2xl font-bold mb-3 text-blue-600">Clear Communication</h3>
                 <p class="text-gray-700 leading-relaxed">
                     At Nexora, clarity drives everything. We communicate openly to ensure alignment,
@@ -575,10 +514,8 @@
                 </p>
             </div>
 
-            <!-- CARD 2 -->
-            <div class="pattern-bg bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
                 <img src="./assets/icons/about-icons/responsibility.png" class="w-12 h-12 mb-6">
-
                 <h3 class="text-2xl font-bold mb-3 text-blue-600">Commitment & Ownership</h3>
                 <p class="text-gray-700 leading-relaxed">
                     We handle every project with seriousness and accountability, ensuring high-quality
@@ -586,10 +523,8 @@
                 </p>
             </div>
 
-            <!-- CARD 3 -->
-            <div class="pattern-bg bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
                 <img src="./assets/icons/about-icons/professionalism.png" class="w-12 h-12 mb-6">
-
                 <h3 class="text-2xl font-bold mb-3 text-blue-600">Professional Excellence</h3>
                 <p class="text-gray-700 leading-relaxed">
                     Excellence defines Nexora. From communication to delivery, we follow a strict
@@ -597,10 +532,8 @@
                 </p>
             </div>
 
-            <!-- CARD 4 -->
-            <div class="pattern-bg bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
                 <img src="./assets/icons/about-icons/organization.png" class="w-12 h-12 mb-6">
-
                 <h3 class="text-2xl font-bold mb-3 text-blue-600">Organized Processes</h3>
                 <p class="text-gray-700 leading-relaxed">
                     We follow structured workflows to ensure stability, transparency, and timely
@@ -608,10 +541,8 @@
                 </p>
             </div>
 
-            <!-- CARD 5 -->
-            <div class="pattern-bg bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
                 <img src="./assets/icons/about-icons/real-time.png" class="w-12 h-12 mb-6">
-
                 <h3 class="text-2xl font-bold mb-3 text-blue-600">On-Time Delivery</h3>
                 <p class="text-gray-700 leading-relaxed">
                     Nexora is known for punctuality. We plan, execute, and deliver results within
@@ -619,49 +550,37 @@
                 </p>
             </div>
 
-            <!-- CARD 6 -->
-            <div class="pattern-bg bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
                 <img src="./assets/icons/about-icons/innovation.png" class="w-12 h-12 mb-6">
-
                 <h3 class="text-2xl font-bold mb-3 text-blue-600">Innovation First</h3>
                 <p class="text-gray-700 leading-relaxed">
                     We adopt new technologies, experiment with ideas, and continuously improve
                     to offer modern and scalable digital solutions.
                 </p>
             </div>
-
         </div>
     </section>
 
-
-    <!-- OUR VISION SECTION -->
+    <!-- ========== VISION ========== -->
     <section class="bg-gradient-to-br from-[#0b1f3b] via-[#0d2847] to-[#0b1f3b] py-8 lg:py-20 relative overflow-hidden">
-        <!-- Decorative Elements -->
         <div class="absolute top-0 right-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
 
         <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-            <!-- MOBILE LAYOUT -->
             <div class="lg:hidden">
-                <!-- Heading -->
-                <h2 class="text-white text-3xl font-bold mb-8 text-center">
-                    Our Vision
-                </h2>
+                <h2 class="text-white text-3xl font-bold mb-8 text-center">Our Vision</h2>
 
-                <!-- Image -->
                 <div class="flex justify-center mb-8">
                     <img src="./assets/images/about/galaxy.png" alt="Vision Illustration"
                         class="w-48 h-48 object-contain drop-shadow-2xl">
                 </div>
 
-                <!-- Paragraph -->
                 <p class="text-gray-300 text-base leading-relaxed text-center mb-8">
                     We are committed to deliver exceptional software solutions for businesses while nurturing a culture
                     of positivity, collaboration, and personal growth among our team members. Our success is defined by
                     our clients' growth and our employees' well-being.
                 </p>
 
-                <!-- CTA Button -->
                 <div class="flex justify-center">
                     <a href="#contact"
                         class="group relative inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50">
@@ -675,28 +594,17 @@
                 </div>
             </div>
 
-            <!-- DESKTOP LAYOUT -->
             <div class="hidden lg:grid grid-cols-2 gap-16 items-center">
-                <!-- LEFT CONTENT -->
                 <div class="space-y-8">
-                    <div>
-                        <div class="inline-block mb-4">
-
-                        </div>
-                        <h2 class="text-white text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                            Our Vision
-                        </h2>
-                    </div>
+                    <h2 class="text-white text-5xl lg:text-6xl font-bold mb-6 leading-tight">Our Vision</h2>
 
                     <p class="text-gray-300 text-lg leading-relaxed">
                         We are committed to deliver exceptional software solutions for businesses while nurturing a
-                        culture
-                        of positivity, collaboration, and personal growth among our team members. Our success is defined
-                        by
-                        our clients' growth and our employees' well-being.
+                        culture of positivity, collaboration, and personal growth among our team members. Our success is
+                        defined
+                        by our clients' growth and our employees' well-being.
                     </p>
 
-                    <!-- CTA Button -->
                     <div class="flex gap-4">
                         <a href="#contact"
                             class="group relative inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50">
@@ -714,7 +622,6 @@
                     </div>
                 </div>
 
-                <!-- RIGHT ILLUSTRATION -->
                 <div class="flex justify-center lg:justify-end">
                     <div class="relative">
                         <div class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl"></div>
@@ -726,12 +633,10 @@
         </div>
     </section>
 
+    <!-- ========== WHAT WE DO ========== -->
     <section class="py-20 bg-gradient-to-b from-white to-gray-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-20">
-
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-
-                <!-- LEFT CONTENT -->
                 <div class="order-1 lg:order-1">
                     <span
                         class="inline-block bg-gradient-to-r from-blue-100 to-blue-50 text-blue-600 px-5 py-2 rounded-full font-semibold mb-4 border border-blue-200">
@@ -740,12 +645,10 @@
 
                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                         Driving Innovation Through <br class="hidden sm:block">
-                        <span class="bg-blue-600 bg-clip-text text-transparent">Intelligent
-                            Digital Solutions</span>
+                        <span class="bg-blue-600 bg-clip-text text-transparent">Intelligent Digital Solutions</span>
                     </h2>
 
-                    <!-- IMAGE - Mobile Only (after heading) -->
-                    <div class="lg:hidden mb-8 relative gradient-border">
+                    <div class="lg:hidden mb-8 relative">
                         <img src="./assets/images/about/teamwork-about.avif"
                             alt="Nexora software development team working on custom digital solutions"
                             class="relative rounded-3xl shadow-2xl w-full h-64 object-cover">
@@ -753,10 +656,9 @@
 
                     <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-5">
                         At <strong class="text-blue-600">Nexora</strong>, we lead innovation by crafting intelligent
-                        digital solutions that
-                        solve complex business challenges with precision and purpose. Our commitment to excellence
-                        drives us
-                        to deliver scalable, future-ready systems that empower businesses to grow and adapt.
+                        digital solutions that solve complex business challenges with precision and purpose. Our
+                        commitment to excellence
+                        drives us to deliver scalable, future-ready systems that empower businesses to grow and adapt.
                     </p>
 
                     <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-5">
@@ -768,11 +670,9 @@
                     <p class="text-gray-700 text-base sm:text-lg leading-relaxed">
                         Our expert team specializes in research, requirement analysis, UI/UX design, software
                         architecture, and high-performance development. We build custom web and mobile applications,
-                        AI-powered
-                        systems, and enterprise-grade software tailored for real-world impact.
+                        AI-powered systems, and enterprise-grade software tailored for real-world impact.
                     </p>
 
-                    <!-- Optional Feature Icons -->
                     <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
                         <div class="flex items-center gap-2 text-gray-700">
                             <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
@@ -801,35 +701,28 @@
                     </div>
                 </div>
 
-
-
-                <!-- RIGHT IMAGE - Desktop Only -->
                 <div class="hidden lg:block order-2 lg:order-2 relative">
                     <div
                         class="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-3xl opacity-20 blur-2xl">
                     </div>
-                    <div class="relative gradient-border">
+                    <div class="relative">
                         <img src="./assets/images/about/teamwork-about.avif"
                             alt="Nexora software development team working on custom digital solutions"
                             class="relative rounded-3xl shadow-2xl w-full object-cover transform hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
+    <!-- ========== COUNTER/ACHIEVEMENTS ========== -->
     <section class="counter-section py-20 lg:py-24 relative">
-
-        <!-- Decorative Background Elements -->
         <div class="absolute inset-0 opacity-5">
             <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
             <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
         </div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10">
-
-            <!-- Optional Heading -->
             <div class="text-center mb-12">
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
                     Our <span class="text-blue-600">Achievements</span>
@@ -839,10 +732,7 @@
                 </p>
             </div>
 
-            <!-- Stats Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-
-                <!-- Projects Completed -->
                 <div class="stat-card rounded-2xl p-8 text-center animate-fade-in">
                     <div class="mb-4">
                         <svg class="w-12 h-12 mx-auto text-blue-600" fill="none" stroke="currentColor"
@@ -852,14 +742,10 @@
                         </svg>
                     </div>
                     <div class="counter-number text-4xl sm:text-5xl font-bold text-blue-600 mb-2" data-target="50"
-                        data-suffix="+">
-                        0+
-                    </div>
-                    <p class="text-black text-sm sm:text-base font-medium">Projects Completed
-                    </p>
+                        data-suffix="+">0+</div>
+                    <p class="text-black text-sm sm:text-base font-medium">Projects Completed</p>
                 </div>
 
-                <!-- Happy Clients -->
                 <div class="stat-card rounded-2xl p-8 text-center animate-fade-in" style="animation-delay: 0.1s;">
                     <div class="mb-4">
                         <svg class="w-12 h-12 mx-auto text-blue-600" fill="none" stroke="currentColor"
@@ -870,13 +756,10 @@
                         </svg>
                     </div>
                     <div class="counter-number text-4xl sm:text-5xl font-bold text-blue-600 mb-2" data-target="40"
-                        data-suffix="+">
-                        0+
-                    </div>
+                        data-suffix="+">0+</div>
                     <p class="text-black text-sm sm:text-base font-medium">Happy Clients</p>
                 </div>
 
-                <!-- Client Satisfaction -->
                 <div class="stat-card rounded-2xl p-8 text-center animate-fade-in" style="animation-delay: 0.2s;">
                     <div class="mb-4">
                         <svg class="w-12 h-12 mx-auto text-blue-600" fill="none" stroke="currentColor"
@@ -887,13 +770,10 @@
                         </svg>
                     </div>
                     <div class="counter-number text-4xl sm:text-5xl font-bold text-blue-600 mb-2" data-target="99"
-                        data-suffix="%">
-                        0%
-                    </div>
+                        data-suffix="%">0%</div>
                     <p class="text-black text-sm sm:text-base font-medium">Client Satisfaction</p>
                 </div>
 
-                <!-- Response Time -->
                 <div class="stat-card rounded-2xl p-8 text-center animate-fade-in" style="animation-delay: 0.3s;">
                     <div class="mb-4">
                         <svg class="w-12 h-12 mx-auto text-blue-600" fill="none" stroke="currentColor"
@@ -902,21 +782,14 @@
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <div class="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">
-                        24hr
-                    </div>
+                    <div class="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">24hr</div>
                     <p class="text-black text-sm sm:text-base font-medium">Response Time</p>
                 </div>
-
             </div>
         </div>
     </section>
 
-
-
-
-
-    <!-- Footer -->
+    <!-- ========== FOOTER ========== -->
     <footer class="bg-gray-900 text-gray-300 py-12">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
@@ -989,29 +862,37 @@
         </div>
     </footer>
 
-
-
+    <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const menuIcon = document.getElementById('mobile-menu-icon');
+        // ========== Mobile Menu Toggle ==========
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
 
+        mobileMenuBtn.addEventListener('click', function () {
             mobileMenu.classList.toggle('hidden');
-            menuBtn.classList.toggle('active');
+            this.classList.toggle('menu-active');
 
-            // Toggle icon between bars and X
             if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
             } else {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-times');
             }
-        }
+        });
 
-        // Smooth Scroll for Navigation Links
+        // ========== Mobile Dropdown Toggle ==========
+        const mobileDropdownTrigger = document.getElementById('mobile-dropdown-trigger');
+        const mobileDropdownContent = document.getElementById('mobile-dropdown-content');
+        const mobileDropdownArrow = document.getElementById('mobile-dropdown-arrow');
+
+        mobileDropdownTrigger.addEventListener('click', function () {
+            mobileDropdownContent.classList.toggle('hidden');
+            mobileDropdownArrow.classList.toggle('rotate-90');
+        });
+
+        // ========== Smooth Scroll ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -1019,46 +900,34 @@
                     e.preventDefault();
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        // Close mobile menu if open
-                        const mobileMenu = document.getElementById('mobile-menu');
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         if (!mobileMenu.classList.contains('hidden')) {
                             mobileMenu.classList.add('hidden');
+                            mobileMenuBtn.classList.remove('menu-active');
+                            mobileMenuIcon.classList.remove('fa-times');
+                            mobileMenuIcon.classList.add('fa-bars');
                         }
                     }
                 }
             });
         });
-        // Navbar Scroll Effect
+
+        // ========== Navbar Scroll Effect ==========
         let lastScroll = 0;
         const navbar = document.querySelector('nav');
 
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
-
             if (currentScroll > 100) {
                 navbar.classList.add('shadow-xl');
             } else {
                 navbar.classList.remove('shadow-xl');
             }
-
             lastScroll = currentScroll;
         });
-        // <!-- MOBILE MENU SCRIPT --> 
 
-        function toggleMobileDropdown() {
-            const box = document.getElementById("mobileDropdown");
-            const arrow = document.getElementById("mobileArrow");
-
-            box.classList.toggle("hidden");
-            arrow.classList.toggle("rotate-90");
-        }
-        // Simple fade-in on scroll
+        // ========== Fade In On Scroll ==========
         const elements = document.querySelectorAll("section");
-
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1072,12 +941,10 @@
             observer.observe(el);
         });
 
-
-        // Particle Animation with Mouse Interaction
+        // ========== Particle Animation ==========
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
 
-        // Set canvas size
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
@@ -1085,9 +952,8 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Particle system
         const particles = [];
-        const particleCount = window.innerWidth < 768 ? 50 : 100; // Fewer particles on mobile
+        const particleCount = window.innerWidth < 768 ? 50 : 100;
         const mouse = { x: null, y: null, radius: 150 };
 
         class Particle {
@@ -1104,7 +970,6 @@
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Mouse interaction
                 if (mouse.x && mouse.y) {
                     const dx = mouse.x - this.x;
                     const dy = mouse.y - this.y;
@@ -1118,7 +983,6 @@
                     }
                 }
 
-                // Boundary check
                 if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
@@ -1131,12 +995,10 @@
             }
         }
 
-        // Initialize particles
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
 
-        // Connect particles with lines
         function connectParticles() {
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
@@ -1156,35 +1018,29 @@
             }
         }
 
-        // Animation loop
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             particles.forEach(particle => {
                 particle.update();
                 particle.draw();
             });
-
             connectParticles();
             requestAnimationFrame(animate);
         }
 
         animate();
 
-        // Mouse move event
         canvas.addEventListener('mousemove', (e) => {
             const rect = canvas.getBoundingClientRect();
             mouse.x = e.clientX - rect.left;
             mouse.y = e.clientY - rect.top;
         });
 
-        // Mouse leave event
         canvas.addEventListener('mouseleave', () => {
             mouse.x = null;
             mouse.y = null;
         });
 
-        // Touch events for mobile
         canvas.addEventListener('touchmove', (e) => {
             const rect = canvas.getBoundingClientRect();
             const touch = e.touches[0];
@@ -1197,12 +1053,10 @@
             mouse.y = null;
         });
 
-
-        // counterSection
-        // Counter Animation Function
+        // ========== Counter Animation ==========
         function animateCounter(element, target, duration = 2000) {
             const start = 0;
-            const increment = target / (duration / 16); // 60fps
+            const increment = target / (duration / 16);
             let current = start;
             const suffix = element.getAttribute('data-suffix') || '';
 
@@ -1216,7 +1070,6 @@
             }, 16);
         }
 
-        // Intersection Observer for triggering animation when in viewport
         const counterObserverOptions = {
             threshold: 0.3,
             rootMargin: '0px'
@@ -1237,17 +1090,11 @@
             });
         }, counterObserverOptions);
 
-        // Observe the counter section
         const counterSection = document.querySelector('.counter-section');
         if (counterSection) {
             counterObserver.observe(counterSection);
         }
-
-
-
     </script>
-
-
 </body>
 
 </html>
