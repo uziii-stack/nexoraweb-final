@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap - Cortellect International</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            max-width: 100vw;
+            position: relative;
+        }
+
+        /* ========================================
+           cortellect NAVBAR - REUSABLE COMPONENT
+           Separated into two sections:
+           1. .cortellect-top-bar (non-sticky info bar)
+           2. .cortellect-navbar (sticky main navigation)
+           ======================================== */
+
+        /* Import font - only if not already loaded on host page */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        /* ===== TOP BAR WRAPPER (NON-STICKY) ===== */
+        .cortellect-top-bar {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            background: #4169E1;
+        }
+
+        .cortellect-top-bar *,
+        .cortellect-top-bar *::before,
+        .cortellect-top-bar *::after {
+            box-sizing: inherit;
+        }
+
+        /* ===== MAIN NAVBAR WRAPPER (STICKY) ===== */
+        /* 🔴 CRITICAL: Only the main navbar is sticky, not the top bar */
+        .cortellect-navbar {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            /* Make ONLY the main navbar sticky */
+            position: -webkit-sticky !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 9999 !important;
+            background: white;
+        }
+
+        /* Ensure all children use border-box */
+        .cortellect-navbar *,
+        .cortellect-navbar *::before,
+        .cortellect-navbar *::after {
+            box-sizing: inherit;
+        }
+
+        /* ===== TOP BAR STYLES ===== */
+        /* Updated selector to work with new .cortellect-top-bar wrapper */
+        .cortellect-top-bar .nav-top-bar,
+        .cortellect-navbar .nav-top-bar {
+            background-color: #4169E1;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .cortellect-top-bar .nav-top-bar-container,
+        .cortellect-navbar .nav-top-bar-container {
+            max-width: 1440px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cortellect-top-bar .nav-top-info,
+        .cortellect-navbar .nav-top-info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .cortellect-top-bar .nav-top-info-item,
+        .cortellect-navbar .nav-top-info-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .cortellect-top-bar .nav-top-info-item i,
+        .cortellect-navbar .nav-top-info-item i {
+            margin-right: 0.5rem;
+        }
+
+        .cortellect-top-bar .nav-top-social,
+        .cortellect-navbar .nav-top-social {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cortellect-top-bar .nav-top-social-links,
+        .cortellect-navbar .nav-top-social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .cortellect-top-bar .nav-top-social a,
+        .cortellect-navbar .nav-top-social a {
+            color: white;
+            transition: color 0.2s;
+        }
+
+        .cortellect-top-bar .nav-top-social a:hover,
+        .cortellect-navbar .nav-top-social a:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Hide location on mobile */
+        .cortellect-top-bar .nav-hide-mobile,
+        .cortellect-navbar .nav-hide-mobile {
+            display: none;
+        }
+
+        /* ===== MAIN NAVBAR STYLES ===== */
+        /* Note: Sticky positioning is now on parent .cortellect-navbar */
+        .cortellect-navbar .nav-main {
+            position: relative;
+            /* No longer sticky, parent handles it */
+            z-index: 1;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .cortellect-navbar .nav-main.nav-scrolled {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cortellect-navbar .nav-main-container {
+            max-width: 1440px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .cortellect-navbar .nav-main-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 5rem;
+        }
+
+        /* ===== LOGO STYLES ===== */
+        .cortellect-navbar .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .cortellect-navbar .nav-logo-icon {
+            background-color: #4169E1;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            animation: nav-pulse-glow 2s infinite alternate;
+        }
+
+        .cortellect-navbar .nav-logo-icon i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .cortellect-navbar .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cortellect-navbar .nav-logo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .cortellect-navbar .nav-logo-title-accent {
+            color: #4169E1;
+        }
+
+        .cortellect-navbar .nav-logo-subtitle {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        @keyframes nav-pulse-glow {
+            from {
+                box-shadow: 0 0 4px #4169E1;
+            }
+
+            to {
+                box-shadow: 0 0 15px #4169E1;
+            }
+        }
+
+        /* ===== DESKTOP MENU ===== */
+        .cortellect-navbar .nav-desktop-menu {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .cortellect-navbar .nav-menu-link {
+            color: #374151;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .cortellect-navbar .nav-menu-link:hover {
+            color: #4169E1;
+        }
+
+        /* Desktop Services Dropdown */
+        .cortellect-navbar .nav-dropdown {
+            position: relative;
+        }
+
+        .cortellect-navbar .nav-dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #374151;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .cortellect-navbar .nav-dropdown-trigger:hover {
+            color: #4169E1;
+        }
+
+        .cortellect-navbar .nav-dropdown-trigger i {
+            font-size: 0.75rem;
+        }
+
+        .cortellect-navbar .nav-dropdown-content {
+            position: absolute;
+            left: 0;
+            margin-top: 0.75rem;
+            width: 18rem;
+            background: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .cortellect-navbar .nav-dropdown:hover .nav-dropdown-content {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cortellect-navbar .nav-dropdown-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .cortellect-navbar .nav-dropdown-item {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: #4b5563;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .cortellect-navbar .nav-dropdown-item:hover {
+            background: #f1f5f9;
+            color: #4169E1;
+        }
+
+        /* CTA Button */
+        .cortellect-navbar .nav-cta-btn {
+            display: inline-block;
+            background-color: #4169E1;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cortellect-navbar .nav-cta-btn:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* ===== MOBILE MENU BUTTON ===== */
+        .cortellect-navbar .nav-mobile-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: #374151;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .cortellect-navbar .nav-mobile-toggle.active {
+            color: #4169E1;
+            background: rgba(65, 105, 225, 0.1);
+            border-radius: 0.5rem;
+            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.2);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .cortellect-navbar .nav-mobile-menu {
+            display: none;
+            padding-bottom: 1rem;
+            max-height: 70vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: white;
+            border-radius: 0 0 0.75rem 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .cortellect-navbar .nav-mobile-menu.active {
+            display: block;
+        }
+
+        /* Custom scrollbar for mobile menu */
+        .cortellect-navbar .nav-mobile-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .cortellect-navbar .nav-mobile-menu::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .cortellect-navbar .nav-mobile-menu::-webkit-scrollbar-thumb {
+            background: #4169E1;
+            border-radius: 10px;
+        }
+
+        .cortellect-navbar .nav-mobile-link {
+            display: block;
+            padding: 0.75rem 0;
+            font-weight: 600;
+            color: #4b5563;
+            text-decoration: none;
+        }
+
+        /* Mobile Dropdown */
+        .cortellect-navbar .nav-mobile-dropdown {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-trigger {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-trigger a {
+            color: #374151;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-arrow {
+            color: #374151;
+            font-size: 0.875rem;
+            transition: transform 0.3s;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-arrow.rotated {
+            transform: rotate(90deg);
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-content {
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            margin-left: 1rem;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-content.active {
+            display: flex;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-item {
+            display: block;
+            color: #374151;
+            padding: 0.5rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-item:hover {
+            background: #f3f4f6;
+            color: #4169E1;
+        }
+
+        /* Mobile CTA */
+        .cortellect-navbar .nav-mobile-cta {
+            display: block;
+            margin-top: 1rem;
+            background-color: #4169E1;
+            color: white;
+            text-align: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cortellect-navbar .nav-mobile-cta:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+        /* Mobile: < 640px */
+        @media (max-width: 639px) {
+
+            .cortellect-top-bar .nav-top-bar-container,
+            .cortellect-navbar .nav-top-bar-container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .cortellect-top-bar .nav-top-info,
+            .cortellect-navbar .nav-top-info {
+                gap: 0.75rem;
+            }
+
+            .cortellect-top-bar .nav-top-info-item,
+            .cortellect-navbar .nav-top-info-item {
+                font-size: 0.75rem;
+            }
+
+            .cortellect-navbar .nav-main-container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .cortellect-navbar .nav-main-content {
+                height: 4rem;
+            }
+
+            .cortellect-navbar .nav-logo-title {
+                font-size: 1.25rem;
+            }
+
+            .cortellect-navbar .nav-logo-icon i {
+                font-size: 1.25rem;
+            }
+
+            .cortellect-navbar .nav-mobile-toggle {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Tablet: 640px - 1023px */
+        @media (min-width: 640px) and (max-width: 1023px) {
+
+            .cortellect-top-bar .nav-top-bar-container,
+            .cortellect-navbar .nav-top-bar-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .cortellect-navbar .nav-main-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .cortellect-top-bar .nav-hide-mobile,
+            .cortellect-navbar .nav-hide-mobile {
+                display: flex;
+            }
+        }
+
+        /* Desktop: >= 1024px */
+        @media (min-width: 1024px) {
+
+            .cortellect-top-bar .nav-top-bar-container,
+            .cortellect-navbar .nav-top-bar-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .cortellect-navbar .nav-main-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .cortellect-navbar .nav-desktop-menu {
+                display: flex;
+            }
+
+            .cortellect-navbar .nav-mobile-toggle {
+                display: none;
+            }
+
+            .cortellect-top-bar .nav-hide-mobile,
+            .cortellect-navbar .nav-hide-mobile {
+                display: flex;
+            }
+        }
+
+        /* Large screens: >= 1536px */
+        @media (min-width: 1536px) {
+
+            .cortellect-top-bar .nav-top-bar-container,
+            .cortellect-navbar .nav-top-bar-container,
+            .cortellect-navbar .nav-main-container {
+                max-width: 1440px;
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .cortellect-navbar * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* End of cortellect Navbar */
+
+
+        /* Page Content Styles */
+        .content-header {
+            background-color: #001F3F;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        /* Sitemap Specific Styles */
+        .sitemap-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .sitemap-section h2 {
+            color: #1f2937;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4169E1;
+        }
+
+        .sitemap-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sitemap-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .sitemap-section a {
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+
+        .sitemap-section a:hover {
+            color: #4169E1;
+            padding-left: 0.5rem;
+        }
+
+        /* Responsive Grid */
+        @media (min-width: 640px) {
+            .sitemap-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .sitemap-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        /* Footer Stacking */
+        footer .grid {
+            gap: 2.5rem !important;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- ========================================
+         cortellect TOP INFO BAR - NON-STICKY
+         This scrolls away when user scrolls down
+         ======================================== -->
+    <div class="cortellect-top-bar">
+        <div class="nav-top-bar">
+            <div class="nav-top-bar-container">
+                <div class="nav-top-info">
+                    <span class="nav-top-info-item">
+                        <i class="fas fa-envelope"></i>
+                        info@cortellect.com
+                    </span>
+                    <span class="nav-top-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Karachi, Pakistan
+                    </span>
+                </div>
+                <div class="nav-top-social">
+                    <span class="nav-top-info-item nav-hide-mobile">
+                        <i class="fas fa-clock"></i>
+                        Open for New Projects
+                    </span>
+                    <div class="nav-top-social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61585676462932" aria-label="Facebook"><i
+                                class="fab fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/cortellect-technologies/" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://x.com/cortellect" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Top Info Bar -->
+    <!-- ========================================
+         cortellect MAIN NAVBAR - STICKY
+         This sticks to the top when scrolling
+         ======================================== -->
+    <div class="cortellect-navbar">
+        <!-- Main Navbar -->
+        <nav class="nav-main">
+            <div class="nav-main-container">
+                <div class="nav-main-content">
+                    <!-- Logo -->
+                    <a href="../index.html" class="nav-logo">
+                        <div class="nav-logo-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="nav-logo-text">
+                            <span class="nav-logo-title">
+                                Corte<span class="nav-logo-title-accent">llect</span>
+                            </span>
+                            <p class="nav-logo-subtitle">International Software House</p>
+                        </div>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="nav-desktop-menu">
+                        <a href="../index.html" class="nav-menu-link">Home</a>
+
+                        <!-- Services Dropdown -->
+                        <div class="nav-dropdown">
+                            <a href="../services.html" class="nav-dropdown-trigger">
+                                Services
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="nav-dropdown-content">
+                                <div class="nav-dropdown-items">
+                                    <a href="../services/erp-enterprise.html" class="nav-dropdown-item">Enterprise
+                                        EMS</a>
+                                    <a href="../services/enterprise-crm-development.html"
+                                        class="nav-dropdown-item">Enterprise CRM
+                                        Development</a>
+                                    <a href="../services/custom-web-application.html" class="nav-dropdown-item">Custom
+                                        Web
+                                        Applications</a>
+                                    <a href="../services/mobile-app-development.html" class="nav-dropdown-item">Mobile
+                                        Application
+                                        Development</a>
+                                    <a href="../services/ui-ux-design.html" class="nav-dropdown-item">UI/UX</a>
+                                    <a href="../services/ai-integration-automation.html" class="nav-dropdown-item">AI
+                                        Integration
+                                        & Automation</a>
+                                    <a href="../services/wordpress-websites.html" class="nav-dropdown-item">WordPress
+                                        Websites</a>
+                                    <a href="../services/tech-consultancy.html" class="nav-dropdown-item">Tech
+                                        Consultancy</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="../industries.html" class="nav-menu-link">Industries</a>
+                        <a href="../index.html#projects" class="nav-menu-link">Portfolio</a>
+                        <a href="../index.html#testimonials" class="nav-menu-link">Reviews</a>
+                        <a href="../about.html" class="nav-menu-link">About</a>
+                        <a href="../blogs.html" class="nav-menu-link">Blogs</a>
+
+                        <a href="../contact.html" class="nav-cta-btn">Contact Us</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button class="nav-mobile-toggle" id="navMobileToggle">
+                        <i class="fas fa-bars" id="navMobileIcon"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div class="nav-mobile-menu" id="navMobileMenu">
+                    <a href="../index.html" class="nav-mobile-link">Home</a>
+
+                    <!-- Mobile Dropdown -->
+                    <div class="nav-mobile-dropdown">
+                        <div class="nav-mobile-dropdown-trigger" id="navMobileDropdownTrigger">
+                            <a href="../services.html">Services</a>
+                            <i class="fas fa-chevron-right nav-mobile-dropdown-arrow" id="navMobileDropdownArrow"></i>
+                        </div>
+                        <div class="nav-mobile-dropdown-content" id="navMobileDropdownContent">
+                            <a href="../services/erp-enterprise.html" class="nav-mobile-dropdown-item">Enterprise
+                                EMS</a>
+                            <a href="../services/enterprise-crm-development.html"
+                                class="nav-mobile-dropdown-item">Enterprise CRM
+                                Development</a>
+                            <a href="../services/custom-web-application.html" class="nav-mobile-dropdown-item">Custom
+                                Web
+                                Applications</a>
+                            <a href="../services/mobile-app-development.html" class="nav-mobile-dropdown-item">Mobile
+                                Application
+                                Development</a>
+                            <a href="../services/ui-ux-design.html" class="nav-mobile-dropdown-item">UI/UX</a>
+                            <a href="../services/ai-integration-automation.html" class="nav-mobile-dropdown-item">AI
+                                Integration &
+                                Automation</a>
+                            <a href="../services/wordpress-websites.html" class="nav-mobile-dropdown-item">WordPress
+                                Websites</a>
+                            <a href="../services/tech-consultancy.html" class="nav-mobile-dropdown-item">Tech
+                                Consultancy</a>
+                        </div>
+                    </div>
+
+                    <a href="../industries.html" class="nav-mobile-link">Industries</a>
+                    <a href="../index.html#projects" class="nav-mobile-link">Portfolio</a>
+                    <a href="../index.html#testimonials" class="nav-mobile-link">Reviews</a>
+                    <a href="../about.html" class="nav-mobile-link">About</a>
+                    <a href="../blogs.html" class="nav-mobile-link">Blogs</a>
+
+                    <a href="../contact.html" class="nav-mobile-cta">Contact Us</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- End of cortellect Navbar -->
+
+
+
+    <!-- ===== HEADER SECTION ===== -->
+    <header class="content-header">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-black mb-4">Sitemap</h1>
+            <p class="text-blue-100 text-lg">Navigate through all pages of Cortellect International</p>
+        </div>
+    </header>
+
+    <!-- ===== SITEMAP CONTENT SECTION ===== -->
+    <main class="sitemap-container">
+        <div class="sitemap-grid">
+
+            <!-- Home Section -->
+            <div class="sitemap-section">
+                <h2>Core Pages</h2>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../industries.html">Industries</a></li>
+
+                    <li><a href="../blogs.html">Blogs</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+
+
+                </ul>
+            </div>
+
+            <!-- Services Section -->
+            <div class="sitemap-section">
+                <h2>Services</h2>
+                <ul>
+                    <li><a href="../services/erp-enterprise.html">Enterprise ERP / EMS</a></li>
+                    <li><a href="../services/enterprise-crm-development.html">Enterprise CRM Development</a></li>
+                    <li><a href="../services/custom-web-application.html">Custom Web Applications</a></li>
+                    <li><a href="../services/mobile-app-development.html">Mobile Application Development</a></li>
+                    <li><a href="../services/ui-ux-design.html">UI/UX Design</a></li>
+                    <li><a href="../services/ai-integration-automation.html">AI Integration & Automation</a></li>
+                    <li><a href="../services/wordpress-websites.html">WordPress Websites</a></li>
+                    <li><a href="../services/tech-consultancy.html">Tech Consultancy</a></li>
+                </ul>
+            </div>
+
+            <!-- Industries Section -->
+            <div class="sitemap-section">
+                <h2>Industries</h2>
+                <ul>
+                    <li><a href="../industries.html">Industries</a></li>
+
+                </ul>
+            </div>
+
+            <!-- Insights Section -->
+            <div class="sitemap-section">
+                <h2>Insights</h2>
+                <ul>
+                    <li><a href="../blogs.html">Blogs</a></li>
+                    <li><a href="../blogs/blog-crm.html">Blog:
+                            How Enterprise CRM Transforms Business Efficiency</a></li>
+                    <li><a href="../blogs/blog-ai.html">Blog: AI Integration & Smart Automation</a></li>
+                    <li><a href="../blogs/blog-web-app.html">Blog: Building Scalable Web Applications in 2025</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal / Utility Section -->
+            <div class="sitemap-section">
+                <h2>Legal / Utility</h2>
+                <ul>
+                    <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="./cookie-policy.html">Cookie Policy</a></li>
+                    <li><a href="./terms-and-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="./sitemap.html">Sitemap</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+
+
+    <!-- ========== FOOTER ========== -->
+
+
+
+
+
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+
+            <!-- Newsletter Section -->
+            <div class="bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl p-6 md:p-8 mb-12">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="text-center md:text-left">
+                        <h3 class="text-white text-xl md:text-2xl font-bold mb-2">
+                            Subscribe to Our Newsletter
+                        </h3>
+                        <p class="text-blue-100 text-sm md:text-base">
+                            Get the latest updates and exclusive offers delivered to your inbox.
+                        </p>
+                    </div>
+
+                    <form id="newsletterForm" class="w-full md:w-auto flex-shrink-0">
+                        <div class="relative w-full md:w-96">
+                            <input type="email" name="user_email" required placeholder="Enter your email address"
+                                class="w-full px-4 py-3 pr-32 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" />
+                            <button type="submit"
+                                class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-5 py-2 rounded-md hover:bg-gray-800 transition font-medium text-sm">
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Main Footer Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
+
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 rounded-xl bg-[#4169E1]">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">
+                            Corte<span class="text-blue-500">llect</span>
+                        </span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed text-sm sm:text-base">
+                        International software house delivering enterprise solutions,
+                        Building scalable digital solutions that empower businesses worldwide.
+                    </p>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Services</h4>
+                    <ul class="space-y-2.5">
+
+                        <li><a href="../services/erp-enterprise.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Enterprise EMS</a>
+                        </li>
+                        <li><a href="../services/enterprise-crm-development.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Enterprise CRM</a></li>
+                        <li><a href="../services/custom-web-application.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Custom Web Applications</a>
+                        </li>
+                        <li><a href="../services/mobile-app-development.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Mobile Application
+                                Development</a></li>
+                        <li><a href="../services/ui-ux-design.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">UI/UX
+                                Design</a></li>
+                        <li><a href="../services/ai-integration-automation.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">AI Integration</a></li>
+                        <li><a href="../services/wordpress-websites.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">WordPress Websites</a></li>
+                        <li><a href="../services/tech-consultancy.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Tech Consultancy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Company</h4>
+                    <ul class="space-y-2.5">
+
+                        <li><a href="../index.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Home</a>
+                        </li>
+                        <li><a href="../services.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Services</a></li>
+                        <li> <a href="../industries.html" class="text-gray-400 hover:text-blue-500 transition text-sm">
+                                Industries
+                            </a></li>
+                        <li><a href="../about.html" class="text-gray-400 hover:text-blue-500 transition text-sm">About
+                                Us</a></li>
+                        <li><a href="../index.html#projects"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Portfolio</a></li>
+                        <li><a href="../index.html#testimonials"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Testimonials</a></li>
+                        <li>
+
+                            <a href="../blogs.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Blogs</a>
+                        </li>
+                        <li>
+                            <a href="../contact.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Social -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Contact Us</h4>
+                    <div class="space-y-2 mb-6">
+                        <p class="text-gray-400 text-sm flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                            <a href="mailto:info@cortellect.com" class="hover:text-blue-500 transition">
+                                info@cortellect.com
+                                <i class="fas fa-external-link-alt ml-1 text-blue-500"></i>
+                            </a>
+                        </p>
+                        <p class="text-gray-400 text-sm flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                            <a href="mailto:info@cortellect.com" class="hover:text-blue-500 transition">
+                                support@cortellect.com
+                                <i class="fas fa-external-link-alt ml-1 text-blue-500"></i>
+                            </a>
+                        </p>
+                        <p class="text-gray-400 text-sm flex items-center">
+                            <i class="fas fa-phone mr-2 text-blue-500"></i>
+                            <a href="tel:+923218283392" class="hover:text-blue-500 transition">
+                                +92 321 8283392
+                                <i class="fas fa-external-link-alt ml-1 text-blue-500"></i>
+                            </a>
+
+                        </p>
+                        <p class="text-gray-400 text-sm flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt text-blue-500"></i>
+                            Karachi, Sindh, Pakistan
+                        </p>
+
+                    </div>
+
+                    <h4 class="text-white font-bold text-lg mb-4">Follow Us</h4>
+                    <div class="flex space-x-3">
+                        <a href="https://www.facebook.com/profile.php?id=61585676462932"
+                            class="bg-gray-800 hover:bg-blue-600 rounded-lg p-3 transition">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/cortellect-technologies"
+                            class="bg-gray-800 hover:bg-blue-600 rounded-lg p-3 transition">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://x.com/cortellect"
+                            class="bg-gray-800 hover:bg-blue-600 rounded-lg p-3 transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/"
+                            class="bg-gray-800 hover:bg-blue-600 rounded-lg p-3 transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech -->
+            <div class="justify-center">
+                <div class="border-t border-gray-800 pt-8 pb-8 text-center">
+
+                    <!-- Title -->
+                    <p class="text-sm mb-4">Technology Partners</p>
+
+                    <!-- Logos -->
+                    <div class="flex justify-center gap-10">
+                        <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                            <i class="fab fa-aws text-2xl text-orange-500"></i>
+                        </div>
+
+                        <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                            <i class="fab fa-google text-2xl text-blue-500"></i>
+                        </div>
+
+                        <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                            <i class="fab fa-microsoft text-2xl text-blue-400"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm text-center md:text-left">
+                        © 2024 cortellect. All rights reserved. Built with excellence.
+                    </p>
+                    <div class="flex gap-6 text-sm">
+                        <a href="./privacy-policy.html" class="text-gray-400 hover:text-blue-500 transition">Privacy
+                            Policy</a>
+                        <a href="./terms-and-conditions.html" class="text-gray-400 hover:text-blue-500 transition">Terms
+                            of
+                            Service</a>
+                        <a href="./sitemap.html" class="text-gray-400 hover:text-blue-500 transition">Sitemap</a>
+                        <a href="./cookie-policy.html" class="text-gray-400 hover:text-blue-500 transition">Cookie
+                            Policy</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Scroll to Top Button -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        class="scroll-to-top bg-blue-600 hover:bg-blue-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg opacity-0 pointer-events-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        //navbar script
+        (function () {
+            'use strict';
+
+            // Mobile Menu Toggle
+            const mobileToggle = document.getElementById('navMobileToggle');
+            const mobileMenu = document.getElementById('navMobileMenu');
+            const mobileIcon = document.getElementById('navMobileIcon');
+
+            if (mobileToggle && mobileMenu && mobileIcon) {
+                mobileToggle.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('active');
+                    mobileToggle.classList.toggle('active');
+
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileIcon.classList.remove('fa-bars');
+                        mobileIcon.classList.add('fa-times');
+                    } else {
+                        mobileIcon.classList.remove('fa-times');
+                        mobileIcon.classList.add('fa-bars');
+                    }
+                });
+            }
+
+            // Mobile Dropdown Toggle
+            const dropdownTrigger = document.getElementById('navMobileDropdownTrigger');
+            const dropdownContent = document.getElementById('navMobileDropdownContent');
+            const dropdownArrow = document.getElementById('navMobileDropdownArrow');
+
+            if (dropdownTrigger && dropdownContent && dropdownArrow) {
+                dropdownTrigger.addEventListener('click', function (e) {
+                    // Don't toggle if clicking the link itself
+                    if (e.target.tagName === 'A') return;
+
+                    dropdownContent.classList.toggle('active');
+                    dropdownArrow.classList.toggle('rotated');
+                });
+            }
+
+            // Navbar Scroll Effect
+            const navbar = document.querySelector('.cortellect-navbar .nav-main');
+            if (navbar) {
+                let lastScroll = 0;
+                window.addEventListener('scroll', function () {
+                    const currentScroll = window.pageYOffset;
+
+                    if (currentScroll > 100) {
+                        navbar.classList.add('nav-scrolled');
+                    } else {
+                        navbar.classList.remove('nav-scrolled');
+                    }
+
+                    lastScroll = currentScroll;
+                });
+            }
+
+            // Smooth Scroll for Anchor Links (within navbar only)
+            const navLinks = document.querySelectorAll('.cortellect-navbar a[href^="#"]');
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+
+                            // Close mobile menu if open
+                            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                                mobileMenu.classList.remove('active');
+                                mobileToggle.classList.remove('active');
+                                mobileIcon.classList.remove('fa-times');
+                                mobileIcon.classList.add('fa-bars');
+                            }
+                        }
+                    }
+                });
+            });
+        })();
+        //navbar script end
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function () {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollBtn.style.opacity = '1';
+                scrollBtn.style.pointerEvents = 'auto';
+            } else {
+                scrollBtn.style.opacity = '0';
+                scrollBtn.style.pointerEvents = 'none';
+            }
+        });
+        // Scroll to top button click event
+        document.querySelector('.scroll-to-top').addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+
+
+
+    </script>
+    <!-- EmailJS library -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("Vm6ZSdzYEzOUn0Gtw"); // Public Key
+        })();
+    </script>
+
+    <!-- Newsletter JS (external, one time file) -->
+    <script src="../newsletter.js"></script>
+</body>
+
+</html>
